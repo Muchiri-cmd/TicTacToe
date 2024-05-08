@@ -76,31 +76,28 @@ const Game =(()=>{
         currPlayer=0;
         gameOver=false;
         Gameboard.createGameBoard();
+        startBtn.remove();
     }
 
     const updateBoard = (event) =>{
         if (gameOver){ //dont updateBoard
             return
         }
-        //console.log("clicked",event.target.id)
         index = event.target.id 
-        //ensure the cell is empty before update
         if (Gameboard.getGameboard()[index] !== ''){
             console.log("Sorry cant make this move")
             return;
         }
         //change GameBoard 
         Gameboard.updateGameBoard(index,players[currPlayer].symbol)
-        //update current player 4 next play
-
         //check if any player has won
         if (isWinningMove(Gameboard.getGameboard(),players[currPlayer].symbol)){
             gameOver=true
-            message.textContent=`${players[currPlayer].name} won!`
+           const displayName = players[currPlayer].name ? players[currPlayer].name : players[currPlayer].symbol;
+           message.textContent = displayName + ' won!'; 
         }else if (isDraw(Gameboard.getGameboard())){
             gameOver = true;
             message.textContent='Its a draw'
-
         }
         currPlayer = currPlayer == 0 ? 1 : 0; //update current player
     }
@@ -122,7 +119,7 @@ const Game =(()=>{
         ]
         for (let i=0 ;i<winCombinations.length;i++){
             const [a,b,c] = winCombinations[i];
-            if (board[a] === board[b] && board[a] === board[c]){
+            if (board[a] && board[a] === board[b] && board[a] === board[c]){
                 return true; //win
             }
         }
