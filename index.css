@@ -11,23 +11,23 @@ body{
     align-items: center;
     height:100vh;
     justify-content: center;
+    min-width:300px;
 }
-.options{
-   
-}
-.restart{
+.restart,.start{
     padding:1em;
     border-radius: .5em;
+    width:10em;
 }
 table{
     border-collapse: collapse;
-    margin-top: 10em;
+    margin: 2em;
 }
 td{
     border:2px solid #333;
-    height:10em;
-    width:10em;
+    height:8em;
+    width:8em;
     cursor: pointer;
+    text-align: center;
 }
 table tr:first-child td {
     border-top:0;
@@ -40,4 +40,14 @@ table tr td{
 }
 table tr td:last-child {
     border-right:0;
+}
+.inputs,.options{
+    padding:.5em;
+    display: flex;
+    align-items: center;
+}
+input,.options>*{
+    padding:1.1em;
+    border-radius: .5em;
+    margin:0em 1em;
 }
