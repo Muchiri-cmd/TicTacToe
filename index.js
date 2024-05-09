@@ -2,8 +2,9 @@
 const board = document.querySelector('.gameboard')
 const startBtn = document.querySelector('.start');
 const restartBtn = document.querySelector('.restart');
-const message = document.querySelector('.message')
-
+const message = document.querySelector('.message');
+const inputs = document.querySelector('.inputs');
+const playersdisplay = document.querySelector('.playersdisplay')
 //global event listeners
 startBtn.addEventListener('click',()=>{
     Game.start();
@@ -70,13 +71,23 @@ const Game =(()=>{
     //create playerobjects - use factory func
     const start=()=>{
         players = [
-            createPlayer(document.querySelector('#player1').value,"X"),
-            createPlayer(document.querySelector('#player2').value,"O")
+            createPlayer(document.querySelector('#player1').value,"❌"),
+            createPlayer(document.querySelector('#player2').value,"⭕")
         ]
         currPlayer=0;
         gameOver=false;
         Gameboard.createGameBoard();
+        //remove player inputs and start button
         startBtn.remove();
+        inputs.remove();
+        //display players
+        if (players[0].name && players[1].name){
+            playersdisplay.textContent = `${players[0].name} vs ${players[1].name}`
+        } else {
+            playersdisplay.textContent = `${players[0].symbol} vs ${players[1].symbol}`
+        }
+        
+
     }
 
     const updateBoard = (event) =>{
@@ -94,10 +105,10 @@ const Game =(()=>{
         if (isWinningMove(Gameboard.getGameboard(),players[currPlayer].symbol)){
             gameOver=true
            const displayName = players[currPlayer].name ? players[currPlayer].name : players[currPlayer].symbol;
-           message.textContent = displayName + ' won!'; 
+           message.textContent = displayName + ' won 🏆!'; 
         }else if (isDraw(Gameboard.getGameboard())){
             gameOver = true;
-            message.textContent='Its a draw'
+            message.textContent='It\'s a draw 🧠!'
         }
         currPlayer = currPlayer == 0 ? 1 : 0; //update current player
     }

@@ -5,6 +5,7 @@
     font-size:20px;
 }
 body{
+    font-family: 'Times New Roman', Times, serif;
     display: flex;
     flex-direction: column;
     margin:auto;
@@ -12,18 +13,38 @@ body{
     height:100vh;
     justify-content: center;
     min-width:300px;
+    background-image: url('tictactoe.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position:center;
+    position: relative;
+}
+.underlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: -1;
+}
+.header{
+    margin-bottom:1em;
+    font-size:2em;
+    color:#e879f9;
+    font-weight: bolder;
 }
 .restart,.start{
     padding:1em;
     border-radius: .5em;
-    width:10em;
+    width:9em;
 }
 table{
     border-collapse: collapse;
     margin: 2em;
 }
 td{
-    border:2px solid #333;
+    border:2px solid white;
     height:8em;
     width:8em;
     cursor: pointer;
@@ -45,9 +66,33 @@ table tr td:last-child {
     padding:.5em;
     display: flex;
     align-items: center;
+    margin:1em;
 }
 input,.options>*{
-    padding:1.1em;
+    padding:.7em;
     border-radius: .5em;
     margin:0em 1em;
+    border:1px solid 
+}
+.versus,.playersdisplay,.message{
+    font-size:2em;
+    color:white;
+}
+@media screen and (max-width:680px) {
+    *{
+        font-size:1rem;
+    }
+    .inputs{
+        flex-direction: column;
+    }
+    .options button{
+        width:7rem;
+    }
+    .header{
+        font-size: 1.7em;
+    }
+    td{
+        height:5rem;
+        width: 5rem;
+    }
 }
